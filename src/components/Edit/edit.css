@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    height: 100%;
+    background: #b4d6f5;
+}
+.header{
+    background: #333f4d;
+    height: 50px;
+    line-height: 50px;
+    font-family: "fantasy";
+    font-size: 40px;
+    color: #b4d6f5;
+}
+
