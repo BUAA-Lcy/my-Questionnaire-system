@@ -13,8 +13,9 @@
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    background-color: #b4d6f5;
-    color: #a0a5a8;
+    /*background-color: #b4d6f5;
+    color: #a0a5a8;*/
+    background-image: url("assest/background3.jpg");
 }
 
 .shell {
@@ -23,9 +24,10 @@
     width: 1000px;
     height: 600px;
     padding: 25px;
-    background-image: url("assest/background3.jpg");
+    /*background-image: url("assest/background3.jpg");*/
+    background-color: rgba(255,255,255,0.1);
     background-size: 100%;
-    box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+    /*box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;*/
     border-radius: 12px;
     overflow: hidden;
     backdrop-filter: blur(50px);
@@ -163,8 +165,9 @@
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background-color: #ecf0f3;
-    box-shadow: inset 8px 8px 12px #b8bec7, inset -8px -8px 12px #fff;
+    background-color: rgba(255,255,255, 0.2);
+    /*background-color: #ecf0f3;
+    box-shadow: inset 8px 8px 12px #b8bec7, inset -8px -8px 12px #fff;*/
     bottom: -60%;
     left: -60%;
     transition: 1.25s;
