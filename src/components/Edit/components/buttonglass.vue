@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <button>
-      <el-icon class="icon" size="30px" v-if="props.type==='select'"><ChatLineSquare /></el-icon>
-      <el-icon class="icon" size="30px" v-if="props.type==='date'"><Clock /></el-icon>
-      <el-icon class="icon" size="30px" v-if="props.type==='grade'"><Star /></el-icon>
-      <el-icon class="icon" size="30px" v-if="props.type==='picture'"><Picture /></el-icon>
-      <el-icon class="icon" size="30px" v-if="props.type==='pulldown'"><ArrowDown /></el-icon>
-      <el-icon class="icon" size="30px" v-if="props.type==='number'"><Histogram /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='text'"><Document /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='select'"><ChatLineSquare /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='date'"><Clock /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='grade'"><Star /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='picture'"><Picture /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='pulldown'"><ArrowDown /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='number'"><Histogram /></el-icon>
+      <el-icon class="icon" size="25px" v-if="props.type==='file'"><Folder /></el-icon>
         <span></span>
         <span></span>
         <span></span>
@@ -17,7 +19,7 @@
 </template>
 <script setup>
 import {ref} from "vue";
-import {ChatLineSquare, Clock, Star, Picture, ArrowDown, Histogram} from "@element-plus/icons-vue";
+import {ChatLineSquare, Clock, Star, Picture, ArrowDown, Histogram, Document, Folder} from "@element-plus/icons-vue";
 const props = defineProps({
   type: String
 })
@@ -43,6 +45,9 @@ if(props.type === 'grade'){
 if(props.type === 'picture'){
   text.value='图片'
 }
+if(props.type === 'file'){
+  text.value='文件'
+}
 </script>
 
 <style scoped>
@@ -58,7 +63,7 @@ if(props.type === 'picture'){
    display: inline-flex;
    justify-content: center;
    align-items: center;
-   background: rgb(255, 255, 255, 0)
+   background: rgba(255, 255, 255, 0)
  }
  button span
  {
@@ -129,17 +134,17 @@ if(props.type === 'picture'){
    line-height: 90px;
    text-align: center;
    text-decoration: none;
-   color: #7e7e7f;
-   border-color: #7293f7;
+   color: #ffffff;
+   border-color: #7e7e7f;
    border-width: 2px;
    text-transform: uppercase;
-   font-family: "幼圆";
+   font-family: "fantasy";
    font-weight: bold;
    overflow: hidden;
    border-radius: 20%;
    background: rgba(255,255,255,.1);
-   backdrop-filter: blur(50px);
-   box-shadow: 0 5px 5px rgb(126, 126, 127);
+   backdrop-filter: blur(10px);
+   /*box-shadow: 0 5px 5px rgb(126, 126, 127);*/
  }
  button:before
  {
@@ -169,7 +174,7 @@ if(props.type === 'picture'){
  }
  button .icon{
    position: absolute;
-   top: 5px;
-   left: 18px;
+   top: 8px;
+   left: 21px;
  }
 </style>

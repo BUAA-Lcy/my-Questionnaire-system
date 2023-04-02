@@ -17,7 +17,32 @@
               main
             </el-main>
             <el-aside>
-              right
+              <div class="co-container">
+                <el-collapse v-model="activeNames" @change="handleChange">
+                  <el-collapse-item title="设置/外观" name="1">
+                    <div class="outlook_form_container">
+                        <el-form ref="form" :model="form" label-width="100px" class="outlook-form" label-suffix="">
+                          <el-form-item label="插入题号">
+                            <el-checkbox v-model="form.number"></el-checkbox>
+                          </el-form-item>
+                          <el-form-item label="表头背景图">
+                            <el-button type="primary"><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
+                          </el-form-item>
+                          <el-form-item label="页面背景图">
+                            <el-button type="primary"><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
+                          </el-form-item>
+                          <el-form-item label="纯色方案">
+                            <div class="block">
+                              <el-color-picker v-model="color2"></el-color-picker>
+                            </div>
+                          </el-form-item>
+                        </el-form>
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="反馈 Feedback" name="2">
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
             </el-aside>
           </el-container>
         </div>
@@ -26,10 +51,28 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue"
-import buttonglass from './components/buttonglass.vue'
+import {onMounted, reactive, ref} from "vue"
+import {Picture} from "@element-plus/icons-vue";
 import Buttonglass from "./components/buttonglass.vue";
-const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture'])
+const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
+const form=reactive( {
+  number: false,
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: ''
+})
+function handleChange(val) {
+  console.log(val);
+}
+const activeNames = ref([])
+function onsubmit(val){
+  console.log(val)
+}
 </script>
 
 <style scoped>

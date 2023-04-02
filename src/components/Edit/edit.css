@@ -4,7 +4,8 @@
 }
 .main{
     height: 100%;
-    background: #b4d6f5;
+    background-image: url("./assests/background.jpg");
+    background-size: 100%;
 }
 .header{
     background: #333f4d;
@@ -14,4 +15,70 @@
     font-size: 40px;
     color: #b4d6f5;
 }
+.edit_page{
+    height: 300px;
 
+}
+.el-collapse-item{
+    border-radius: 10%;
+}
+.el-collapse{
+    border-width: 0px;
+}
+.co-container{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 5%;
+    border: 2px solid #a0a5a8;
+    box-shadow: #7e7e7f;
+}
+::v-deep .el-collapse-item__header
+{
+    border-width: 0;
+    background: rgb(201, 201, 210, .0);
+    color: white;
+    font-weight: bold;
+}
+::v-deep .el-collapse-item__header:before
+{
+    background: rgb(255, 255, 255, .4);
+    border-top: 2px solid #a0a5a8;
+}
+::v-deep .el-collapse-item__header:hover
+{
+    background: linear-gradient(90deg,transparent,
+    rgba(255,255,255,.7),transparent);
+    transition: 0.5s;
+}
+::v-deep .el-collapse-item__wrap
+{
+    background: rgb(255, 255, 255, .0);
+    border-width: 0px;
+}
+::v-deep .el-collapse-item__content
+{
+    background: rgb(255, 255, 255, .0);
+}
+.outlook_form_container{
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.0);
+}
+::v-deep .el-form-item__label
+{
+    color: white;
+}
+.el-button{
+    padding: 5px;
+    background: rgba(126, 126, 127, 0.3);
+    border-color: white;
+}
+.el-button:hover{
+    background: linear-gradient(90deg,transparent,
+    rgba(255, 255, 255, 0.7),transparent);
+    transition: 0.5s;
+    border-color: #7e7e7f;
+}
+.el-form-item{
+    margin:10px 0 10px 0;
+}

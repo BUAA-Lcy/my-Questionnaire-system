@@ -53,10 +53,9 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue"
-onMounted(()=>{
-  console.log('begin')
-})
+import {onMounted, reactive, ref} from "vue"
+import {useStore} from "vuex";
+const UserStore = useStore()
 const switch_c2 = ref(null)
 const switch_c1 = ref(null)
 const switch_cnt = ref(null)
@@ -66,8 +65,12 @@ const b_container = ref(null)
 const b_form = ref(null)
 const switch_circle0 = ref(null)
 const switch_circle1 = ref(null)
+const user = reactive({
+  user_name:"谢秉书",
+  user_id:"1",
+  user_email:"xiebingshu2021@163.com"
+})
 function changeForm(){
-  console.log('fuction begin');
   switch_cnt.value.classList.add('is-gx');
   setTimeout(function () {
     switch_cnt.value.classList.remove('is-gx')
@@ -80,9 +83,14 @@ function changeForm(){
   a_container.value.classList.toggle('is-txl')
   b_container.value.classList.toggle('is-txl')
   b_container.value.classList.toggle('is-z')
-
-
 }
+onMounted(()=>{
+  console.log(UserStore.state.user_name)
+  console.log(UserStore.state.user_id)
+  UserStore.commit("loginSuccess",user)
+  console.log(UserStore.state.user_name)
+  console.log(UserStore.state.user_id)
+})
 </script>
 
 <style scoped>
