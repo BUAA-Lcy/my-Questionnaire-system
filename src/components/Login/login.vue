@@ -54,8 +54,9 @@
 
 <script setup>
 import {onMounted, reactive, ref} from "vue"
+import {mapState, mapGetters, mapMutations, createNamespacedHelpers} from 'vuex'
 import {useStore} from "vuex";
-const UserStore = useStore()
+const Store = useStore()
 const switch_c2 = ref(null)
 const switch_c1 = ref(null)
 const switch_cnt = ref(null)
@@ -85,11 +86,12 @@ function changeForm(){
   b_container.value.classList.toggle('is-z')
 }
 onMounted(()=>{
-  console.log(UserStore.state.user_name)
-  console.log(UserStore.state.user_id)
-  UserStore.commit("loginSuccess",user)
-  console.log(UserStore.state.user_name)
-  console.log(UserStore.state.user_id)
+  console.log(Store)
+  console.log(Store.state.User.user_id)
+  console.log(Store.state.User.user_name)
+  Store.commit('loginSuccess', user)
+  console.log(Store.state.User.user_id)
+  console.log(Store.state.User.user_name)
 })
 </script>
 

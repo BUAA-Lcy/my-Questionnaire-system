@@ -7,14 +7,14 @@
       </el-header>
       <el-main>
         <div class="main">
-          <el-container>
+          <el-container style="height: 100%">
             <el-aside>
               <template v-for="(item, index) in type" :key="index">
                   <buttonglass :type="item"></buttonglass>
               </template>
             </el-aside>
             <el-main>
-              main
+              <display></display>
             </el-main>
             <el-aside>
               <div class="co-container">
@@ -53,18 +53,12 @@
 <script setup>
 import {onMounted, reactive, ref} from "vue"
 import {Picture} from "@element-plus/icons-vue";
-import Buttonglass from "./components/buttonglass.vue";
+import buttonglass from "./components/buttonglass.vue";
+import display from "./components/display.vue"
+import Display from "./components/display.vue";
 const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
 const form=reactive( {
   number: false,
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: ''
 })
 function handleChange(val) {
   console.log(val);

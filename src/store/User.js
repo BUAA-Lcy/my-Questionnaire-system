@@ -1,5 +1,5 @@
 import {createStore} from 'vuex'
-const store = createStore({
+const UserModule ={
     state: {
         login_or_not:false,
         user_name: "",
@@ -14,11 +14,8 @@ const store = createStore({
             state.user_email = user.user_id;
         }
     },
-    getters: {
-
-    },
-    modules: {
+    actions: {
 
     }
-})
-export default store
+}
+export default UserModule

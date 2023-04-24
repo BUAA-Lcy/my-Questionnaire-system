@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button>
+    <button @click="addQuestion">
       <el-icon class="icon" size="25px" v-if="props.type==='text'"><Document /></el-icon>
       <el-icon class="icon" size="25px" v-if="props.type==='select'"><ChatLineSquare /></el-icon>
       <el-icon class="icon" size="25px" v-if="props.type==='date'"><Clock /></el-icon>
@@ -47,6 +47,20 @@ if(props.type === 'picture'){
 }
 if(props.type === 'file'){
   text.value='文件'
+}
+import {useStore} from "vuex";
+const store = useStore()
+function getProject_edit(){
+  return JSON.parse(JSON.stringify(store.getters.get_currentProject))
+}
+function addQuestion(){
+  const currentProjectEdit = getProject_edit()
+  currentProjectEdit.questions.push({
+    type:props.type,
+    description: '',
+    name: 'test1'
+  })
+  store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
 }
 </script>
 

@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "echarts": "^5.4.2",
+    "echarts-for-vue": "^1.4.1",
     "element-plus": "^2.3.2",
+    "neo4j-driver": "^5.7.0",
     "vue": "^3.2.45",
+    "vue-deepset": "^0.6.3",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
   },
