@@ -20,6 +20,7 @@
               <div class="co-container">
                 <el-collapse v-model="activeNames" @change="handleChange">
                   <el-collapse-item title="设置/外观" name="1">
+                    <el-divider></el-divider>
                     <div class="outlook_form_container">
                         <el-form ref="form" :model="form" label-width="100px" class="outlook-form" label-suffix="">
                           <el-form-item label="插入题号">
@@ -39,7 +40,8 @@
                         </el-form>
                     </div>
                   </el-collapse-item>
-                  <el-collapse-item title="反馈 Feedback" name="2">
+                  <el-collapse-item title="tobecompleted" name="2">
+                    <form_text :message="formSave"></form_text>
                   </el-collapse-item>
                 </el-collapse>
               </div>
@@ -54,8 +56,11 @@
 import {onMounted, reactive, ref} from "vue"
 import {Picture} from "@element-plus/icons-vue";
 import buttonglass from "./components/buttonglass.vue";
-import display from "./components/display.vue"
+import display from "./components/display.vue";
 import Display from "./components/display.vue";
+import form_text from "./components/form_text.vue"
+import Form_text from "./components/form_text.vue";
+
 const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
 const form=reactive( {
   number: false,
@@ -67,6 +72,12 @@ const activeNames = ref([])
 function onsubmit(val){
   console.log(val)
 }
+const formSave = reactive({
+  mutex: '',
+  input: '',
+  description: '',
+  must: false
+})
 </script>
 
 <style scoped>
