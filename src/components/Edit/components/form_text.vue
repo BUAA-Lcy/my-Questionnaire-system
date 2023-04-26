@@ -1,9 +1,9 @@
 <template>
   <div class="outlook_form_container">
     <el-divider></el-divider>
-    <el-form ref="form" :model="form" label-width="100px" class="outlook-form" label-suffix="">
+    <el-form ref="form_container" :model="form" label-width="100px" class="outlook-form" label-suffix="">
       <el-form-item label="切换组件类型">
-        <el-select v-model="mutex_value" class="m-2" :placeholder="mutex_value" size="small">
+        <el-select v-model="form.mutex" class="m-2" :placeholder="form.mutex" size="small">
           <el-option
               v-for="item in options"
               :key="item.value"
@@ -14,46 +14,50 @@
       </el-form-item>
       <el-divider></el-divider>
       <el-form-item label="标题">
-        <el-input v-model="input_value" :placeholder=input_value size="small" style="margin-right: 5px"/>
+        <el-input v-model="form.name" :placeholder=curQuestion.name size="small" style="margin-right: 5px"/>
       </el-form-item>
       <el-divider></el-divider>
       <el-form-item label="描述">
-        <el-input v-model="description_value" :placeholder=description_value size="small" style="margin-right: 5px"/>
+        <el-input v-model="form.description" :placeholder=curQuestion.description size="small" style="margin-right: 5px"/>
       </el-form-item>
       <el-divider></el-divider>
       <el-form-item label="是否必填">
-        <el-checkbox v-model="must_value"></el-checkbox>
+        <el-checkbox v-model="form.must"></el-checkbox>
       </el-form-item>
     </el-form>
+    <button @click="test">test</button>
   </div>
 </template>
 
 <script setup>
-import {reactive, ref, toRaw, watch} from "vue";
-const props = defineProps({
-
+import {useStore} from "vuex";
+import {onMounted, provide, reactive, ref, toRaw, watch} from "vue";
+const store = useStore()
+const Questions = ref(toRaw(getProject_use().questions))
+const Questions_edit = ref(getProject_edit().questions)
+const currentId = ref(store.state.Project.currentQuestion)
+function getProject_edit(){
+  return JSON.parse(JSON.stringify(store.getters.get_currentProject))
+}
+function getProject_use(){
+  return store.getters.get_currentProject
+}
+watch(() => getProject_use().questions, (newVal, oldVal) => {
+  Questions.value = toRaw(newVal)
+  Questions_edit.value = getProject_edit().questions
+}, { deep: true })
+const curQuestion = reactive({
+  name: Questions.value[store.state.Project.currentQuestion].name,
+  description: Questions.value[store.state.Project.currentQuestion].description,
 })
 const form = reactive({
-  mutex: '',
-  input: '',
+  mutex: '单行文本',
+  name: '',
   description: '',
   must: false
 })
-const mutex_value = ref('单行文本')
-watch(() => mutex_value.value, (newVal, oldVal) => {
-  form.mutex = newVal
-})
-const input_value = ref('文本框')
-watch(() => input_value.value, (newVal, oldVal) => {
-  form.input = newVal
-})
-const description_value = ref('')
-watch(() => description_value.value, (newVal, oldVal) => {
-  form.description = newVal
-})
-const must_value = ref(false)
-watch(() => must_value.value, (newVal, oldVal) => {
-  form.must = newVal
+watch(() => form.name,(newVal, oldVal) => {
+  Questions_edit.value.splice()
 })
 const options = [
   {
@@ -65,6 +69,9 @@ const options = [
     label: '多行文本',
   },
 ]
+function test(){
+  console.log(currentId.value)
+}
 </script>
 
 <style scoped>

@@ -22,7 +22,7 @@
                   <el-collapse-item title="设置/外观" name="1">
                     <el-divider></el-divider>
                     <div class="outlook_form_container">
-                        <el-form ref="form" :model="form" label-width="100px" class="outlook-form" label-suffix="">
+                        <el-form ref="form_container" :model="form" label-width="100px" class="outlook-form" label-suffix="">
                           <el-form-item label="插入题号">
                             <el-checkbox v-model="form.number"></el-checkbox>
                           </el-form-item>
@@ -41,7 +41,8 @@
                     </div>
                   </el-collapse-item>
                   <el-collapse-item title="tobecompleted" name="2">
-                    <form_text :message="formSave"></form_text>
+                    <form_text v-if="current_Question_id != -1"></form_text>
+                    <button @click="test">test</button>
                   </el-collapse-item>
                 </el-collapse>
               </div>
@@ -53,15 +54,22 @@
 </template>
 
 <script setup>
-import {onMounted, reactive, ref} from "vue"
+import {useStore} from "vuex";
+import {onMounted, provide, reactive, ref, toRaw, watch} from "vue";
+const store = useStore()
 import {Picture} from "@element-plus/icons-vue";
 import buttonglass from "./components/buttonglass.vue";
 import display from "./components/display.vue";
 import Display from "./components/display.vue";
 import form_text from "./components/form_text.vue"
 import Form_text from "./components/form_text.vue";
-
 const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
+const current_Question_id = ref(store.state.Project.currentQuestion)
+watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
+  current_Question_id.value = toRaw(newVal)
+})
+
+const form_container = ref()
 const form=reactive( {
   number: false,
 })
@@ -72,12 +80,9 @@ const activeNames = ref([])
 function onsubmit(val){
   console.log(val)
 }
-const formSave = reactive({
-  mutex: '',
-  input: '',
-  description: '',
-  must: false
-})
+function test(){
+  console.log(current_Question_id)
+}
 </script>
 
 <style scoped>

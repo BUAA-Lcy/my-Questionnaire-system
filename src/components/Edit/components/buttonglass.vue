@@ -56,9 +56,9 @@ function getProject_edit(){
 function addQuestion(){
   const currentProjectEdit = getProject_edit()
   currentProjectEdit.questions.push({
-    type:props.type,
+    type: props.type,
     description: '',
-    name: 'test1'
+    name: text.value,
   })
   store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
 }

@@ -4,6 +4,7 @@ const ProjectModule ={
     state: {
         Projects:[],
         currentId:-1,
+        currentQuestion:-1,
     },
     mutations: {
         addProject(state, project){
@@ -17,6 +18,9 @@ const ProjectModule ={
         },
         updateCurrent(state, props){
             state.Projects.splice(props.index, 1, JSON.parse(JSON.stringify(props.project)))
+        },
+        updateQuestion(state, index){
+            state.currentQuestion = toRaw(index)
         },
     },
     actions: {
