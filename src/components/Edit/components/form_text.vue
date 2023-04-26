@@ -60,6 +60,8 @@ watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
 watch(() => getProject_use().questions, (newVal, oldVal) => {
   Questions.value = toRaw(newVal)
   Questions_edit.value = getProject_edit().questions
+  curQuestion.name = Questions.value[current_Question_id.value].name
+  curQuestion.description = Questions.value[current_Question_id.value].description
 }, { deep: true })
 const form = reactive({
   mutex: '单行文本',

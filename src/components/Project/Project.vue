@@ -10,6 +10,7 @@ import {useStore} from "vuex";
 const store = useStore()
 const currentProject = reactive({
   name: 'test1',
+  background_URL: '',
   questions: [],
    id: 1, //这个后端给
 })

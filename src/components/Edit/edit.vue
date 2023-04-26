@@ -6,7 +6,7 @@
         </div>
       </el-header>
       <el-main>
-        <div class="main">
+        <div class="main" :style="{ backgroundImage: background_Url !='' ? 'url(' + background_Url+ ')' : ''}">
           <el-container style="height: 100%">
             <el-aside>
               <template v-for="(item, index) in type" :key="index">
@@ -30,7 +30,15 @@
                             <el-button type="primary"><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
                           </el-form-item>
                           <el-form-item label="页面背景图">
-                            <el-button type="primary"><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
+                            <el-button type="primary" @click="handleClickUpload">
+                              <input
+                                ref="fileInput"
+                                type="file"
+                                style="display: none;"
+                                accept="image/*"
+                                @change="handleBackgroundChange"
+                              />
+                              <el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
                           </el-form-item>
                           <el-form-item label="纯色方案">
                             <div class="block">
@@ -65,10 +73,19 @@ import form_text from "./components/form_text.vue"
 import Form_text from "./components/form_text.vue";
 const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
 const current_Question_id = ref(store.state.Project.currentQuestion)
+const background_Url = ref(toRaw(getProject_use().background_URL))
+function getProject_edit(){
+  return JSON.parse(JSON.stringify(store.getters.get_currentProject))
+}
+function getProject_use(){
+  return store.getters.get_currentProject
+}
 watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
   current_Question_id.value = toRaw(newVal)
 })
-
+watch(()=>getProject_use().background_URL, (newVal, oldVal)=>{
+  background_Url.value = toRaw(newVal)
+})
 const form_container = ref()
 const form=reactive( {
   number: false,
@@ -76,12 +93,32 @@ const form=reactive( {
 function handleChange(val) {
   console.log(val);
 }
+const fileInput = ref()
+function handleClickUpload (){
+  fileInput.value = document.querySelector('input[type=file]')
+  fileInput.value.click()
+}
+function handleBackgroundChange (event){
+  const file = event.target.files[0]
+  if (!file) {
+    return
+  }
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    // 将文件内容转化为 Base64 编码的字符串，并赋值给 state 中的 imageUrl
+    background_Url.value = e.target.result
+    const currentProjectEdit = getProject_edit()
+    currentProjectEdit.background_URL = background_Url.value
+    store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
+  }
+  reader.readAsDataURL(file)
+}
 const activeNames = ref([])
 function onsubmit(val){
   console.log(val)
 }
 function test(){
-  console.log(current_Question_id)
+  console.log(background_Url.value)
 }
 </script>
 
