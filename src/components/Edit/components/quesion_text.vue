@@ -24,6 +24,8 @@ function getProject_use(){
 }
 watch(() => getProject_use().questions, (newVal, oldVal) => {
   Questions.value = toRaw(newVal)
+  Question.name = Questions.value[props.index].name
+  Question.description = Questions.value[props.index].description
 }, { deep: true })
 watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
   if(oldVal === props.index && newVal != props.index){

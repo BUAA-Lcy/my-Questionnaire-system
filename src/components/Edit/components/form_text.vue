@@ -35,21 +35,32 @@ import {onMounted, provide, reactive, ref, toRaw, watch} from "vue";
 const store = useStore()
 const Questions = ref(toRaw(getProject_use().questions))
 const Questions_edit = ref(getProject_edit().questions)
-const currentId = ref(store.state.Project.currentQuestion)
+const current_Question_id = ref(store.state.Project.currentQuestion)
+let change_lock = true
 function getProject_edit(){
   return JSON.parse(JSON.stringify(store.getters.get_currentProject))
 }
 function getProject_use(){
   return store.getters.get_currentProject
 }
+const curQuestion = reactive({
+  name: Questions.value[current_Question_id.value].name,
+  description: Questions.value[current_Question_id.value].description,
+})
+watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
+  current_Question_id.value = toRaw(newVal)
+  if(newVal != -1){
+    curQuestion.name = Questions.value[current_Question_id.value].name
+    curQuestion.description = Questions.value[current_Question_id.value].description
+    form.name = ''
+    form.description = ''
+    change_lock = false
+  }
+})
 watch(() => getProject_use().questions, (newVal, oldVal) => {
   Questions.value = toRaw(newVal)
   Questions_edit.value = getProject_edit().questions
 }, { deep: true })
-const curQuestion = reactive({
-  name: Questions.value[store.state.Project.currentQuestion].name,
-  description: Questions.value[store.state.Project.currentQuestion].description,
-})
 const form = reactive({
   mutex: '单行文本',
   name: '',
@@ -57,7 +68,20 @@ const form = reactive({
   must: false
 })
 watch(() => form.name,(newVal, oldVal) => {
-  Questions_edit.value.splice()
+  if(change_lock === false){
+    change_lock = true
+  }
+  else{
+    Questions_edit.value.splice(current_Question_id.value, 1, {
+      type: toRaw(Questions.value[current_Question_id.value].type),
+      description: toRaw(Questions.value[current_Question_id.value].description),
+      name: toRaw(form.name),
+    })
+    const currentProjectEdit = getProject_edit()
+    currentProjectEdit.questions = Questions_edit.value
+    store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
+    console.log(getProject_use().questions)
+  }
 })
 const options = [
   {
@@ -70,7 +94,7 @@ const options = [
   },
 ]
 function test(){
-  console.log(currentId.value)
+  console.log(Questions_edit.value)
 }
 </script>
 
