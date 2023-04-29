@@ -50,7 +50,7 @@ if(props.type === 'file'){
 }
 import {useStore} from "vuex";
 const store = useStore()
-function getProject_edit(){
+function getProject_edit(){//这个还挺重要的，相当于复制了一份当前选择的问卷，那个看着很愚蠢的处理是为了去除响应式
   return JSON.parse(JSON.stringify(store.getters.get_currentProject))
 }
 function addQuestion(){

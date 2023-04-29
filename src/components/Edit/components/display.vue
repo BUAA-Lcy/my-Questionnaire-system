@@ -14,10 +14,10 @@ import {onMounted, provide, reactive, ref, toRaw, watch} from "vue";
 const store = useStore()
 const question_select = ref(null)
 const Questions = ref(toRaw(getProject_use().questions))
-function getProject_use(){
+function getProject_use(){//从数据库中拿到当前的问卷，有响应式，库中状态改变会同步更新
   return store.getters.get_currentProject
 }
-watch(() => getProject_use().questions, (newVal, oldVal) => {
+watch(() => getProject_use().questions, (newVal, oldVal) => {//通过深度监听使得questions能够相应的更新
   Questions.value = toRaw(newVal)
 }, { deep: true })
 function test(){
