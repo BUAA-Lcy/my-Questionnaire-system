@@ -27,10 +27,17 @@
                             <el-checkbox v-model="form.number"></el-checkbox>
                           </el-form-item>
                           <el-form-item label="表头背景图">
-                            <el-button type="primary"><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
+                            <el-button type="primary" @click="handleTitleUpload">
+                              <input
+                                  ref="titleInput"
+                                  type="file"
+                                  style="display: none;"
+                                  accept="image/*"
+                                  @change="handleTitleChange"
+                              /><el-icon size="15px" style="margin-right: 5px;"><Picture/></el-icon>上传背景图</el-button>
                           </el-form-item>
                           <el-form-item label="页面背景图">
-                            <el-button type="primary" @click="handleClickUpload">
+                            <el-button type="primary" @click="handleBackgroundUpload">
                               <input
                                 ref="fileInput"
                                 type="file"
@@ -74,6 +81,7 @@ import Form_text from "./components/form_text.vue";
 const type=ref(['text', 'select', 'pulldown', 'date', 'number', 'grade', 'picture', 'file'])
 const current_Question_id = ref(store.state.Project.currentQuestion)
 const background_Url = ref(toRaw(getProject_use().background_URL))
+const title_Url = ref(toRaw(getProject_use().title_URL))
 function getProject_edit(){
   return JSON.parse(JSON.stringify(store.getters.get_currentProject))
 }
@@ -86,6 +94,9 @@ watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
 watch(()=>getProject_use().background_URL, (newVal, oldVal)=>{
   background_Url.value = toRaw(newVal)
 })
+watch(()=>getProject_use().title_URL, (newVal, oldVal)=>{
+  title_Url.value = toRaw(newVal)
+})
 const form_container = ref()
 const form=reactive( {
   number: false,
@@ -94,11 +105,17 @@ function handleChange(val) {
   console.log(val);
 }
 const fileInput = ref()
-function handleClickUpload (){
-  fileInput.value = document.querySelector('input[type=file]')
+const titleInput = ref()
+function handleTitleUpload (){
+  // titleInput.value = document.querySelector('input[type=file]')
+  titleInput.value.click()
+}
+function handleBackgroundUpload (){
+  // fileInput.value = document.querySelector('input[type=file]:nth-of-type(2)')
   fileInput.value.click()
 }
 function handleBackgroundChange (event){
+  console.log('background')
   const file = event.target.files[0]
   if (!file) {
     return
@@ -109,6 +126,21 @@ function handleBackgroundChange (event){
     background_Url.value = e.target.result
     const currentProjectEdit = getProject_edit()
     currentProjectEdit.background_URL = background_Url.value
+    store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
+  }
+  reader.readAsDataURL(file)
+}
+function handleTitleChange (event){
+  const file = event.target.files[0]
+  if (!file) {
+    return
+  }
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    // 将文件内容转化为 Base64 编码的字符串，并赋值给 state 中的 imageUrl
+    title_Url.value = e.target.result
+    const currentProjectEdit = getProject_edit()
+    currentProjectEdit.title_URL = title_Url.value
     store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
   }
   reader.readAsDataURL(file)
