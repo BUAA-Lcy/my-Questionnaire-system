@@ -36,7 +36,6 @@ const store = useStore()
 const Questions = ref(toRaw(getProject_use().questions))
 const Questions_edit = ref(getProject_edit().questions)
 const current_Question_id = ref(store.state.Project.currentQuestion)
-let change_lock = true
 function getProject_edit(){
   return JSON.parse(JSON.stringify(store.getters.get_currentProject))
 }
@@ -52,9 +51,10 @@ watch(() => store.state.Project.currentQuestion, (newVal, oldVal) => {
   if(newVal != -1){
     curQuestion.name = Questions.value[current_Question_id.value].name
     curQuestion.description = Questions.value[current_Question_id.value].description
-    form.name = ''
-    form.description = ''
-    change_lock = false
+    form.name = Questions.value[current_Question_id.value].name
+    form.description = Questions.value[current_Question_id.value].description
+    form.mutex = Questions.value[current_Question_id.value].mutex
+    form.must = Questions.value[current_Question_id.value].must
   }
 })
 watch(() => getProject_use().questions, (newVal, oldVal) => {
@@ -64,34 +64,31 @@ watch(() => getProject_use().questions, (newVal, oldVal) => {
   curQuestion.description = Questions.value[current_Question_id.value].description
 }, { deep: true })
 const form = reactive({
-  mutex: '单行文本',
-  name: '',
-  description: '',
-  must: false
+  mutex: Questions.value[current_Question_id.value].mutex,
+  name: Questions.value[current_Question_id.value].name,
+  description: Questions.value[current_Question_id.value].description,
+  must: Questions.value[current_Question_id.value].must,
 })
-watch(() => form.name,(newVal, oldVal) => {
-  if(change_lock === false){
-    change_lock = true
-  }
-  else{
+watch(() => form,(newVal, oldVal) => {
     Questions_edit.value.splice(current_Question_id.value, 1, {
       type: toRaw(Questions.value[current_Question_id.value].type),
-      description: toRaw(Questions.value[current_Question_id.value].description),
+      description: toRaw(form.description),
       name: toRaw(form.name),
+      mutex: toRaw(form.mutex),
+      must: toRaw(form.must)
     })
     const currentProjectEdit = getProject_edit()
     currentProjectEdit.questions = Questions_edit.value
     store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
     console.log(getProject_use().questions)
-  }
-})
+},{deep: true})
 const options = [
   {
-    value: '单行文本',
+    value: false,
     label: '单行文本',
   },
   {
-    value: '多行文本',
+    value: true,
     label: '多行文本',
   },
 ]

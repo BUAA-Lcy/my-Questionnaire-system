@@ -59,6 +59,8 @@ function addQuestion(){
     type: props.type,
     description: '',
     name: text.value,
+    mutex: false,
+    must: false,
   })
   store.commit('updateCurrent',{project:currentProjectEdit, index:store.getters.get_currentIndex})
 }
