@@ -10,6 +10,9 @@
       <button class="router_button" @click="$router.push('/about')">about</button>
       <button class="router_button" @click="$router.push('/statistic')">statistic</button>
       <button class="router_button" @click="$router.push('/contact')">contact</button>
+      <button class="router_button" @click="$router.push('/contact')">contact</button>
+      <button class="router_button" @click="$router.push('/preview')">preview</button>
+      
      </div>
 
   </router-view>
