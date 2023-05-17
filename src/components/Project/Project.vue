@@ -1,6 +1,20 @@
 <template>
   <div>这里是project</div>
   <button @click="changeProject">changeProject</button>
+ 
+  <router-view>
+
+    <div class="center">
+      <button class="router_button" @click="$router.push('/result')">Result</button>
+      <button class="router_button" @click="$router.push('/lcytest')">test</button>
+      <button class="router_button" @click="$router.push('/about')">about</button>
+      <button class="router_button" @click="$router.push('/statistic')">statistic</button>
+      <button class="router_button" @click="$router.push('/contact')">contact</button>
+     </div>
+
+  </router-view>
+
+
 </template>
 
 <script setup>
@@ -31,5 +45,22 @@ function changeProject(){//改变项目的一个例子，不太能参考
 </script>
 
 <style scoped>
+  .router_button{
+    width: 100px;
+    background-color: #409EFF;
+    color: white;
+    border-radius: 10px;
+    margin: 40px;
+    /* 每个按钮独占一行 */
+    display: block;
+    height: 5vh; 
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
 
 </style>

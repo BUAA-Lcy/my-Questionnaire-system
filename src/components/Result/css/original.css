@@ -1,0 +1,39 @@
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background-color: #3093ff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+  }
+  .sidebar {
+    background-color: #f0f0f0;
+    width: 200px;
+  }
+  .main {
+    padding: 20px;
+    flex: 1;
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }

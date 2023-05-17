@@ -1,0 +1,67 @@
+.header_item {
+    border-bottom: 10px solid #e6e6e6;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out; /* 添加过渡效果 */
+
+   
+  }
+  
+.header_item:hover {
+    background-color: #e6f7ff;
+    transform: scale(1.2);
+    /*放大20%*/
+}
+
+.sidebar_item {
+    border-bottom: 1px solid #e6e6e6;
+    font-weight: bold;
+    padding: 16px 20px;
+    transition: transform 0.3s ease-in-out; /* 添加过渡效果 */
+  }
+  
+  .sidebar_item:hover {
+    background-color: #e6f7ff;
+    transform: scale(1.2); /* 放大 20% */
+  }
+  .app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background-color: #3093ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    justify-self: start;
+  }
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+  }
+  .sidebar {
+    background-color: #f0f0f0;
+    width: 200px;
+   
+    padding: 12px 20px;
+  }
+  .main {
+    padding: 20px;
+    flex: 1;
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
