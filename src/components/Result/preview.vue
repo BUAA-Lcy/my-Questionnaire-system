@@ -9,11 +9,12 @@
           <el-menu mode="horizontal" router>
 
           <el-menu-item index="/" class="header_item">首页</el-menu-item>
-          <el-menu-item route="/about" index="/about" class="header_item">关于我们</el-menu-item>
-          <el-menu-item route="/contact" index="/contact" class="header_item">联系我们</el-menu-item>
-          <el-menu-item route="/login" index="/login" class="header_item">登录</el-menu-item>
-          <el-menu-item route="/login" index="/login" class="header_item">注册</el-menu-item>
-          <el-menu-item route="/login" index="/login" class="header_item">打赏</el-menu-item>
+          <el-menu-item index="/reslut" class="header_item">Reslut</el-menu-item>
+          <el-menu-item index="/about" class="header_item">关于我们</el-menu-item>
+          <el-menu-item index="/contact" class="header_item">联系我们</el-menu-item>
+          <el-menu-item index="/login" class="header_item">登录</el-menu-item>
+          <el-menu-item index="/login" class="header_item">注册</el-menu-item>
+          <el-menu-item index="/login" class="header_item">打赏</el-menu-item>
 
           
 

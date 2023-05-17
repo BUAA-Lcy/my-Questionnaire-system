@@ -9,6 +9,7 @@ const Lcytest_contact=()=>import('../components/Result/contact.vue')
 const Lcytest_statistic=()=>import('../components/Result/statistic.vue')
 const Preview=()=>import('../components/Result/preview.vue')
 const Home=()=>import('../components/Home/home.vue')
+const change_test=()=>import('../components/Result/change_test.vue')
 
 
 const routes = [
@@ -22,6 +23,7 @@ const routes = [
     { path: '/statistic', component: Lcytest_statistic},
     { path: '/preview', component: Preview},
     { path: '/home', component: Home},
+    { path: '/change_test', component: change_test},
 
 
 ]
