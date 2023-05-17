@@ -9,7 +9,7 @@
           <el-menu mode="horizontal" router>
 
           <el-menu-item index="/home" class="header_item">首页</el-menu-item>
-          <el-menu-item index="/reslut" class="header_item">收集结果</el-menu-item>
+          <el-menu-item index="/result" class="header_item">收集结果</el-menu-item>
           <el-menu-item index="/about" class="header_item">关于我们</el-menu-item>
           <el-menu-item index="/contact" class="header_item">联系我们</el-menu-item>
           <el-menu-item index="/login" class="header_item">登录</el-menu-item>
@@ -25,7 +25,6 @@
       <el-aside class="sidebar">
         <el-menu :mode="vertical" router>
             <el-menu-item index="/statistic" class="sidebar_item">问卷总体信息</el-menu-item>
-            <el-menu-item index="/preview" class="sidebar_item">问卷预览</el-menu-item>
             <el-menu-item index="/statistic" class="sidebar_item">分享问卷</el-menu-item>
             <el-menu-item index="/statistic" class="sidebar_item">分析&下载</el-menu-item>
         </el-menu>
