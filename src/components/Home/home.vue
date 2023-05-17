@@ -3,12 +3,12 @@
   <router-view>
 
     <div class="center">
-      <button class="router_button" @click="$router.push('/result')">Result</button>
       <button class="router_button" @click="$router.push('/test')">test</button>
+      <button class="router_button" @click="$router.push('/result')">Result</button>
+      <button class="router_button" @click="$router.push('/preview')">preview</button>
       <button class="router_button" @click="$router.push('/about')">about</button>
       <button class="router_button" @click="$router.push('/statistic')">statistic</button>
       <button class="router_button" @click="$router.push('/contact')">contact</button>
-      <button class="router_button" @click="$router.push('/preview')">preview</button>
       <button class="router_button" @click="$router.push('/change_test')">change_test</button>
       <div class="center">
         <br>

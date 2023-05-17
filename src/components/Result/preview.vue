@@ -71,13 +71,9 @@
             </el-form>
 
 
-        
-
-
+      
         
           <div>
-              <div ref="pieChart" style="width: 400px; height: 400px;"></div>
-              <div ref="barChart" style="width: 400px; height: 400px;"></div>
           </div>
           
       </div>
@@ -94,22 +90,20 @@
 <script>
 import * as echarts from 'echarts';
 export default {
-  
-  name: 'Result',
+  name: 'preview',
   mounted() {
-    this.initCharts();
   },
   data() {
     return {
       activeIndex: '/',
-      questionnaireTitle: '问卷预览标题', // 问卷标题
+      questionnaireTitle: '问卷标题', // 问卷标题
       form: {}, // 用于存储问卷回答数据的对象
       questions: 
         [
           // 示例问卷数据
           {
             id: 'question1',
-            title: '问题1：您的性别是？',
+            title: 'gender？',
             type: 'single-choice',
             options: [
               { label: '男', value: 'male' },
@@ -118,7 +112,7 @@ export default {
           },
           {
             id: 'question2',
-            title: '问题2：您喜欢的颜色（可多选）',
+            title: 'favorite color？',
             type: 'multiple-choice',
             options: [
               { label: '红', value: 'red' },
@@ -128,9 +122,9 @@ export default {
           },
           {
             id: 'question3',
-            title: '问题3：您的兴趣爱好是什么？',
+            title: 'why do you play genshin impact？',
             type: 'text',
-            placeholder: '请填写您的兴趣爱好',
+            placeholder: 'reason',
           },
         ],
     }
@@ -139,60 +133,6 @@ export default {
   methods: {
     handleSelect(index, indexPath) {
       this.activeIndex = index;
-    },
-    initCharts() {
-      // 初始化扇形图
-      const pieChart = echarts.init(this.$refs.pieChart);
-      const pieOption = {
-        title: {
-          text: '扇形图示例',
-          left: 'center',
-        },
-        tooltip: {
-          trigger: 'item',
-        },
-        legend: {
-          orient: 'vertical',
-          left: 'left',
-        },
-        series: [
-          {
-            name: '访问来源',
-            type: 'pie',
-            radius: '50%',
-            data: [
-              { value: 335, name: '直接访问' },
-              { value: 310, name: '邮件营销' },
-              { value: 234, name: '联盟广告' },
-              { value: 135, name: '视频广告' },
-              { value: 1548, name: '搜索引擎' },
-            ],
-          },
-        ],
-      };
-      pieChart.setOption(pieOption);
-
-      // 初始化柱状图
-      const barChart = echarts.init(this.$refs.barChart);
-      const barOption = {
-        title: {
-          text: '柱状图示例',
-          left: 'center',
-        },
-        tooltip: {},
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-        },
-        yAxis: {},
-        series: [
-          {
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20],
-          },
-        ],
-      };
-      barChart.setOption(barOption);
     },
   }
 }
