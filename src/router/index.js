@@ -17,7 +17,7 @@ const routes = [
     { path: '/edit', component: Edit },
     { path: '/project', component: Project},
     { path: '/result', component: Result},
-    { path: '/lcytest', component: Lcytest},
+    { path: '/test', component: Lcytest},
     { path: '/about', component: Lcytest_about},
     { path: '/contact', component: Lcytest_contact},
     { path: '/statistic', component: Lcytest_statistic},

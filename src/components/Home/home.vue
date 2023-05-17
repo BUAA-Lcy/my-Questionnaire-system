@@ -4,12 +4,20 @@
 
     <div class="center">
       <button class="router_button" @click="$router.push('/result')">Result</button>
-      <button class="router_button" @click="$router.push('/lcytest')">test</button>
+      <button class="router_button" @click="$router.push('/test')">test</button>
       <button class="router_button" @click="$router.push('/about')">about</button>
       <button class="router_button" @click="$router.push('/statistic')">statistic</button>
       <button class="router_button" @click="$router.push('/contact')">contact</button>
       <button class="router_button" @click="$router.push('/preview')">preview</button>
       <button class="router_button" @click="$router.push('/change_test')">change_test</button>
+      <div class="center">
+        <br>
+        <div class="explananory">result页面为最终呈现的统计结果页面</div>
+        <div class="explananory">preview页面为最终呈现的问卷预览页面</div>
+        <div class="explananory">test页面为正在测试页面 </div>
+        <div class="explananory">change_test页面为原先测试更改变化的页面</div>
+      </div>
+
 
       
      </div>
@@ -49,5 +57,20 @@
 
   margin: 50px;
 }
+.explanatory{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%; /*占据一行 */
 
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%; /*占据一行 */
+}
 </style>

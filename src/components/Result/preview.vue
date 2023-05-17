@@ -1,58 +1,65 @@
 <template>
   <div class="app">
-
     <!-- 顶部导航栏 -->
     <el-header class="header">
       <div class="logo">Soul</div>
       <div class="menu">
-        
-          <el-menu mode="horizontal" router>
-
-          <el-menu-item index="/" class="header_item">首页</el-menu-item>
-          <el-menu-item index="/reslut" class="header_item">Reslut</el-menu-item>
-          <el-menu-item index="/about" class="header_item">关于我们</el-menu-item>
-          <el-menu-item index="/contact" class="header_item">联系我们</el-menu-item>
-          <el-menu-item index="/login" class="header_item">登录</el-menu-item>
-          <el-menu-item index="/login" class="header_item">注册</el-menu-item>
-          <el-menu-item index="/login" class="header_item">打赏</el-menu-item>
-
-          
-
+        <el-menu mode="horizontal">
+          <router-link to="/home">
+            <el-menu-item class="header_item">首页</el-menu-item>
+          </router-link>
+          <router-link to="/result">
+            <el-menu-item class="header_item">Reslut</el-menu-item>
+          </router-link>
+          <router-link to="/about">
+            <el-menu-item class="header_item">关于我们</el-menu-item>
+          </router-link>
+          <router-link to="/contact">
+            <el-menu-item class="header_item">联系我们</el-menu-item>
+          </router-link>
+          <router-link to="/login">
+            <el-menu-item class="header_item">登录</el-menu-item>
+          </router-link>
+          <router-link to="/register">
+            <el-menu-item class="header_item">注册</el-menu-item>
+          </router-link>
+          <router-link to="/donate">
+            <el-menu-item class="header_item">打赏</el-menu-item>
+          </router-link>
         </el-menu>
       </div>
     </el-header>
-
     <div class="content-wrapper">
       <!-- 侧边栏 -->
       <el-aside class="sidebar">
-        <el-menu :mode="vertical" router>
-            <el-menu-item index="/statistic" class="sidebar_item">问卷总体信息</el-menu-item>
-              <!-- <el-submenu index="components"> -->
-              <!-- <template >Components</template> -->
-            <el-menu-item index="/preview" class="sidebar_item">问卷预览</el-menu-item>
-            <el-menu-item index="/statistic" class="sidebar_item">分享问卷</el-menu-item>
-            <el-menu-item index="/statistic" class="sidebar_item">分析&下载</el-menu-item>
-          <!-- </el-submenu> -->
+        <el-menu :mode="vertical">
+          <router-link to="/statistic">
+            <el-menu-item class="sidebar_item">问卷总体信息</el-menu-item>
+          </router-link>
+          <router-link to="/preview">
+            <el-menu-item class="sidebar_item">问卷预览</el-menu-item>
+          </router-link>
+          <router-link to="/share">
+            <el-menu-item class="sidebar_item">分享问卷</el-menu-item>
+          </router-link>
+          <router-link to="/analysis">
+            <el-menu-item class="sidebar_item">分析&下载</el-menu-item>
+          </router-link>
         </el-menu>
       </el-aside>
-
       <!-- 内容栏 -->
       <el-main>
-      <div class="main">
-    
-
-
+        <div class="main">
           <div class="center">
             <!-- 问卷标题区域 -->
             <div class="questionnaire-title">
               <h1>{{ questionnaireTitle }}</h1>
             </div>
-            
             <!-- 问卷内容区域 -->
             <el-form ref="form" :model="form" label-width="120px" class="questionlist">
               <!-- 遍历问卷中的问题 -->
               <div v-for="(question, index) in questions" :key="index" class="question-item">
-                <div class="question-title">{{ question.title }}</div> <!-- 修改样式 -->
+                <div class="question-title">{{ question.title }}</div>
                 <el-form-item>
                   <!-- 单选题 -->
                   <div v-if="question.type === 'single-choice'">
@@ -78,18 +85,8 @@
               </div>
             </el-form>
           </div>
-
-
-
-
-
-          
-      </div>
-        
+        </div>
       </el-main>
-
-
-      <el-footer class="footer">Footer</el-footer> 
     </div>
   </div>
 </template>
@@ -97,7 +94,6 @@
 <script>
 import * as echarts from 'echarts';
 export default {
-  
   name: 'Result',
   mounted() {
     this.initCharts();
@@ -141,14 +137,10 @@ export default {
     handleSelect(index, indexPath) {
       this.activeIndex = index;
     },
-
   }
 }
 </script>
 
-
-
 <style src="./css/layout.css"></style>
 <style src="./css/question.css"></style>
 <style src="./css/center.css"></style>
-
