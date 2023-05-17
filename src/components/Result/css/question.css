@@ -1,0 +1,41 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .questionnaire-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .questionlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+  }
+  .question-item {
+    margin-bottom: 20px;
+  }
+  .question-title {
+    font-weight: bold;
+    margin-bottom: 40px;
+    width: 400px;
+    text-align: left;
+  }
+  /* 自定义样式 */
+  .el-radio-group, .el-checkbox-group {
+    width: 100%; /* 让选择题的选项占据一行 */
+  }
+  .el-radio, .el-checkbox {
+    display: block; /* 让选择题的选项占据一行 */
+    margin-bottom: 10px; /* 添加间距 */
+  }
+  .el-input {
+    width: 100%; /* 让填空题的输入框宽度为100% */
+    font-size: 16px; /* 修改字体大小 */
+  }

@@ -11,7 +11,6 @@ const Preview=()=>import('../components/Result/preview.vue')
 const Home=()=>import('../components/Home/home.vue')
 
 
-
 const routes = [
     { path: '/login', component: Login },
     { path: '/edit', component: Edit },
@@ -23,6 +22,7 @@ const routes = [
     { path: '/statistic', component: Lcytest_statistic},
     { path: '/preview', component: Preview},
     { path: '/home', component: Home},
+
 
 ]
 
