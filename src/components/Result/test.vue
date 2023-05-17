@@ -71,6 +71,18 @@
                   <br/>
                 </el-form-item>
 
+
+
+                <div class="main">
+                    <div>
+                        <div ref="pieChart" style="width: 100px; height: 100px;"></div>
+                        <div ref="barChart" style="width: 100px; height: 100px;"></div>
+                    </div>
+                    
+                </div>
+
+
+
                 <div> 
                   <el-button-group >
                     <el-button class="rendering_button" :type="selectedOption === 'option1' ? 'primary' : ''" @click="selectedOption = 'option1'">扇形图</el-button>
@@ -102,10 +114,14 @@
 
 <script>
 import * as echarts from 'echarts';
-export default {
+export default{
+
   name: 'preview',
+
   mounted() {
-  },
+      this.initCharts();
+    },
+  
   data() {
     return {
       activeIndex: '/',
@@ -142,13 +158,69 @@ export default {
           },
         ],
     }
-    
   },
+  
   methods: {
-    handleSelect(index, indexPath) {
-      this.activeIndex = index;
-    },
-  }
+      handleSelect(index, indexPath) {
+        this.activeIndex = index;
+      },
+      initCharts() {
+        // 初始化扇形图
+        console.log('initCharts called');
+        const pieChart = echarts.init(this.$refs.pieChart);
+        const pieOption = {
+          title: {
+            text: '扇形图示例',
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'item',
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left',
+          },
+          series: [
+            {
+              name: '访问来源',
+              type: 'pie',
+              radius: '50%',
+              data: [
+                { value: 335, name: '直接访问' },
+                { value: 310, name: '邮件营销' },
+                { value: 234, name: '联盟广告' },
+                { value: 135, name: '视频广告' },
+                { value: 1548, name: '搜索引擎' },
+              ],
+            },
+          ],
+        };
+        pieChart.setOption(pieOption);
+  
+        // 初始化柱状图
+        const barChart = echarts.init(this.$refs.barChart);
+        const barOption = {
+          title: {
+            text: '柱状图示例',
+            left: 'center',
+          },
+          tooltip: {},
+          xAxis: {
+            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+          },
+          yAxis: {},
+          series: [
+            {
+              name: '销量',
+              type: 'bar',
+              data: [5, 20, 36, 10, 10, 20],
+            },
+          ],
+        };
+        barChart.setOption(barOption);
+      },
+    }
+
 }
 </script>
 

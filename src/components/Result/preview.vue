@@ -140,7 +140,7 @@ export default {
 
 
 
-<style src="./css/layout.css"></style>
+<style src="./css/AIlayout.css"></style>
 <style src="./css/question.css"></style>
 <style src="./css/center.css"></style>
 

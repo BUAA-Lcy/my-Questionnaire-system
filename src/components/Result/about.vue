@@ -1,5 +1,6 @@
 <template>
-    <h1>about</h1>
-    <p>this is about page</p>
+    <select></select>
 </template>
-  
+<script setup>
+    import select from './components/select.vue'
+</script>
