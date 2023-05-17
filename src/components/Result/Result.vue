@@ -26,12 +26,9 @@
         <el-aside class="sidebar">
           <el-menu :mode="vertical" router>
               <el-menu-item index="/statistic" class="sidebar_item">问卷总体信息</el-menu-item>
-                <!-- <el-submenu index="components"> -->
-                <!-- <template >Components</template> -->
               <el-menu-item index="/preview" class="sidebar_item">问卷预览</el-menu-item>
               <el-menu-item index="/statistic" class="sidebar_item">分享问卷</el-menu-item>
               <el-menu-item index="/statistic" class="sidebar_item">分析&下载</el-menu-item>
-            <!-- </el-submenu> -->
           </el-menu>
         </el-aside>
   

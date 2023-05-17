@@ -14,7 +14,8 @@
         <br>
         <div class="explananory">result页面为最终呈现的统计结果页面</div>
         <div class="explananory">preview页面为最终呈现的问卷预览页面</div>
-        <div class="explananory">test页面为正在测试页面 </div>
+        <div class="explananory">test页面为正在测试页面 目前正在测试result</div>
+        <div class="explananory">已经解决preview跳转bug</div>
         <div class="explananory">change_test页面为原先测试更改变化的页面</div>
       </div>
 
