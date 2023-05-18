@@ -1,11 +1,8 @@
 .rendering_button{
-    /* 天蓝色的背景 */
-    background-color: #6bd1f6;
+    /* 灰蓝色的背景 */
+    background-color: #7898BF;
     border: none;
     color: white;
-    padding: 15px 32px;
-    margin: 10px 2px;
-    cursor: pointer;
     width: 33%;
     font-size: 16px;
     border-radius: 5px;
@@ -13,6 +10,10 @@
     font-family: 'Roboto', sans-serif;
     transition-duration: 0.4s;
     box-shadow: 0 9px #999;
-
-
-}
+  }
+  
+  /* 悬浮特效 */
+  .rendering_button:hover {
+    font-size: 18px;
+    font-weight: bold;
+  }

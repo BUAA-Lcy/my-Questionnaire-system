@@ -9,7 +9,7 @@
           <div v-if="question.type === 'single-choice'">
            <!-- 引入chart1 -->
            <div id="chart1" style="width: 600px;height:400px;"></div>
-            <el-button-group >
+            <el-button-group class="center">
                 <el-button class="rendering_button" @click="changetype_to_column(0)">柱状图</el-button>
                 <el-button class="rendering_button" @click="changetype_to_line(0)">折线图</el-button>
             </el-button-group>
@@ -19,7 +19,7 @@
           <!-- 多选题 -->
           <div v-else-if="question.type === 'multiple-choice'">
             <div id="chart2" style="width: 600px;height:400px;"></div>
-            <el-button-group >
+            <el-button-group class="center">
                 <el-button class="rendering_button" @click="changetype_to_column(1)">柱状图</el-button>
                 <el-button class="rendering_button" @click="changetype_to_line(1)">折线图</el-button>
             </el-button-group>
@@ -182,3 +182,4 @@ const form = ref({
 
 <style src="../css/question.css"></style>
 <style src="../css/button.css"> </style>
+
