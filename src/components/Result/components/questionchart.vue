@@ -8,15 +8,20 @@
           <!-- 单选题 -->
           <div v-if="question.type === 'single-choice'">
            <!-- 引入chart1 -->
+           <div id="chart1" style="width: 600px;height:400px;"></div>
+            <el-button-group >
+                <el-button class="rendering_button" @click="changetype_to_column(0)">柱状图</el-button>
+                <el-button class="rendering_button" @click="changetype_to_line(0)">折线图</el-button>
+            </el-button-group>
             
 
           </div>
           <!-- 多选题 -->
           <div v-else-if="question.type === 'multiple-choice'">
-            <div id="chart1" style="width: 600px;height:400px;"></div>
+            <div id="chart2" style="width: 600px;height:400px;"></div>
             <el-button-group >
-                <el-button class="rendering_button" @click="changetype_to_column">柱状图</el-button>
-                <el-button class="rendering_button" @click="changetype_to_line">折线图</el-button>
+                <el-button class="rendering_button" @click="changetype_to_column(1)">柱状图</el-button>
+                <el-button class="rendering_button" @click="changetype_to_line(1)">折线图</el-button>
             </el-button-group>
 
           </div>
@@ -37,22 +42,30 @@ import * as echarts from 'echarts';
 import { ElRadioGroup, ElRadioButton } from 'element-plus';
 import ElementPlus from 'element-plus';
 import {onMounted, ref} from "vue";
-
+const charttypelist = ref(['line','bar'])
 const charttype = ref('line')
-var option1; 
-function initChart1(){
+
+var options = ref([]);
+function initChart(){
     var myChart1 = echarts.init(document.getElementById('chart1'));
-    myChart1.setOption(option1);
+    var myChart2 = echarts.init(document.getElementById('chart2'));
+
+    myChart1.setOption(options.value[0]);
+    myChart2.setOption(options.value[1]);
 }
-function changetype_to_column(){
-    charttype.value = 'bar'
-    option1.series[0].type = 'bar'
-    initChart1()
+function changetype_to_column(num){
+    // charttype.value = 'bar'
+    charttypelist.value[num] = 'bar'
+    options.value[num].series[0].type = 'bar'
+    // option1.series[num].type = 'bar'
+    initChart()
 }
-function changetype_to_line(){
-    charttype.value = 'line'
-    option1.series[0].type = 'line'
-    initChart1()
+function changetype_to_line(num){
+    // charttype.value = 'line'
+    charttypelist.value[num] = 'line'
+    options.value[num].series[0].type = 'line'
+    // option2.series[num].type = 'line'
+    initChart()
 }
 const data = ref({
     question_title : "问卷标题",
@@ -125,7 +138,7 @@ const data = ref({
 
 });
 
-option1 = {
+options.value[0] = {
   xAxis: {
     type: 'category',
     data: data.value.firstoptionslist
@@ -135,20 +148,35 @@ option1 = {
   },
   series: [
     {
-      type: charttype.value,
+      type: charttypelist.value[0],
       data: data.value.firstvalues
     }
   ]
-};
+}
+
+options.value[1] = {
+  xAxis: {
+    type: 'category',
+    data: data.value.firstoptionslist
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      type: charttypelist.value[1],
+      data: data.value.firstvalues
+    }
+  ]
+}
 
 
 onMounted(()=>{
-    initChart1();
+    initChart();
 })
 const form = ref({
 
 });
-console.log(option1);
 
 </script>
 
