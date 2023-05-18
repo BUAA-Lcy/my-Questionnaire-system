@@ -1,5 +1,6 @@
 <template>
-    <h1>contact</h1>
-    <p>this is contact page</p>
-  </template>
- 
+  <overview></overview>
+</template>
+<script setup>
+  import overview from './components/overview.vue';
+</script>
