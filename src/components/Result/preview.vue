@@ -125,6 +125,12 @@ export default {
             title: 'why do you play genshin impact？',
             type: 'text',
             placeholder: 'reason',
+          }, 
+          {
+            id: 'question4',
+            title: 'why do you play genshin impact？',
+            type: 'text',
+            placeholder: 'reason',
           },
         ],
     }

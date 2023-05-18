@@ -18,19 +18,26 @@
     <div class="content-wrapper">
       <!-- 侧边栏 -->
       <el-aside class="sidebar">
-        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" @select="handleSelect">
+        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" >
           <el-menu-item index="/dashboard">问卷总体信息</el-menu-item>
           <el-submenu index="components">
             <template >Components</template>
-            <el-menu-item index="/components/button">发送问卷</el-menu-item>
-            <el-menu-item index="/components/input">分析&下载</el-menu-item>
+            <el-menu-item index="statistic">发送问卷</el-menu-item>
+            <el-menu-item index="statistic">分析&下载</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
 
       <!-- 内容栏 -->
       <el-main class="main">
+        <div>
+          <div v-for="(data, index) in datasum" :key="index">
+          <h2 class="questionnaire-title">{{ data.questionnaireTitle }}</h2>
+        </div>
+        </div>
+        
         <overview></overview>
+        
         <router-view>
           <div>
             <div id="pieChart" style="width: 400px; height: 400px;"></div>
@@ -53,6 +60,15 @@ onMounted(()=>{
   initCharts()
 })
 const activeIndex = ref('/')
+const datasum = ref([
+  {
+    recovery: 100,
+    views: 500,
+    recoveryRate: '20%',
+    avgCompletionTime: '5分钟',
+    questionnaireTitle: '问卷标题'    
+  }
+]);
 const dataTest = ref([
   { value: 335, name: 'xbs' },
   { value: 310, name: 'xbs' },
@@ -62,9 +78,7 @@ const dataTest = ref([
 ])
 const pieChart = ref(null)
 const barChart = ref(null)
-function handleSelect(index, indexPath) {
-  activeIndex.value = index;
-}
+
 function initCharts() {
   // 初始化扇形图np
   const pieChart = echarts.init(document.getElementById("pieChart"));//初始化一个表
@@ -116,4 +130,5 @@ function initCharts() {
 </script>
 
 <style src="./css/AIlayout.css"></style>
+<style src="./css/question.css"></style>
 

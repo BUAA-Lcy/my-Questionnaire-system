@@ -114,18 +114,3 @@
     transform: translateX(20px);
 }
 
-.main {
-    padding: 20px;
-    flex: 1;
-    background-color: #fff;
-    box-shadow: 2px 2px 4px var(--sidebar-shadow-color);
-    margin-top: 50px;
-}
-
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-shadow: 0 0 10px var(--primary-color);
-}
