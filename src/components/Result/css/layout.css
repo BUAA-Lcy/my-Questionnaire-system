@@ -65,3 +65,6 @@
     align-items: center;
     flex-direction: column;
   }
+  .fixed{
+    position: fixed;
+  }

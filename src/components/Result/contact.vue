@@ -1,8 +1,8 @@
 <template>
   <frame></frame>
-  <overview></overview>
-  <!-- <questionlist></questionlist>
-  <questionchart></questionchart>  -->
+  <!-- <overview></overview> -->
+  <!-- <questionlist></questionlist> -->
+  <!-- <questionchart></questionchart> -->
 </template>
 
 <script setup>

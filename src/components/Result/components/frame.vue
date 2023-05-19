@@ -1,5 +1,6 @@
 <template>
     <div class="app">
+      <div class="fixed">
   
       <!-- 顶部导航栏 -->
       <el-header class="header">
@@ -36,7 +37,7 @@
         </el-main>
   
   
-        
+      </div>
       </div>
     </div>
   </template>

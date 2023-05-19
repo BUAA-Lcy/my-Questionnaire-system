@@ -12,6 +12,7 @@
             <el-button-group class="center">
                 <el-button class="rendering_button" @click="changetype_to_column(0)">柱状图</el-button>
                 <el-button class="rendering_button" @click="changetype_to_line(0)">折线图</el-button>
+                <el-button class="rendering_button" @click="changetype_to_pie(0)">扇形图</el-button>
             </el-button-group>
             
 
@@ -22,6 +23,7 @@
             <el-button-group class="center">
                 <el-button class="rendering_button" @click="changetype_to_column(1)">柱状图</el-button>
                 <el-button class="rendering_button" @click="changetype_to_line(1)">折线图</el-button>
+                <el-button class="rendering_button" @click="changetype_to_pie(1)">扇形图</el-button>
             </el-button-group>
 
           </div>
@@ -67,6 +69,15 @@ function changetype_to_line(num){
     // option2.series[num].type = 'line'
     initChart()
 }
+function changetype_to_pie(num){
+    // charttype.value = 'line'
+    charttypelist.value[num] = 'pie'
+    options.value[num].series[0].type = 'pie'
+    // option2.series[num].type = 'line'
+    initChart()
+}
+
+
 const data = ref({
     question_title : "问卷标题",
     questions: 
@@ -126,14 +137,14 @@ const data = ref({
         },
     ],
     firstoptionslist:[
-        'A',
-        'B',
-        'C'
+      ['A', 'B', 'C'],
+      ['D', 'E', 'F'],
+      ['G', 'H', 'I']
     ],
     firstvalues:[
-        98,
-        10,
-        101
+        [98,10,101],
+        [20,100,50],
+        [78,20,61]
     ],
 
 });
@@ -149,7 +160,7 @@ options.value[0] = {
   series: [
     {
       type: charttypelist.value[0],
-      data: data.value.firstvalues
+      data: data.value.firstvalues[0],
     }
   ]
 }
@@ -165,10 +176,32 @@ options.value[1] = {
   series: [
     {
       type: charttypelist.value[1],
-      data: data.value.firstvalues
+      data: data.value.firstvalues[1],
     }
   ]
 }
+options.value[2] = {
+  series: [
+    {
+      type: 'pie',
+      data: [
+        {
+          value: 98,
+          name: 'A'
+        },
+        {
+          value: 10,
+          name: 'B'
+        },
+        {
+          value: 101,
+          name: 'C'
+        }
+      ]
+    }
+  ]
+}
+
 
 
 onMounted(()=>{
