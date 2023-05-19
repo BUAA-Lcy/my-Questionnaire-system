@@ -1,0 +1,134 @@
+/* 主题色为深蓝色 */
+:root {
+    --primary-color: #2c3b3f;
+    --primary-light-color: #85929a;
+    --primary-dark-color: #cce2f4;
+    --secondary-color: #889aa8;
+    --sidebar-shadow-color: rgba(69, 66, 66, 0.3);
+}
+.header {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-light-color));
+    color: var(--secondary-color);
+    display: flex; 
+    align-items: center;  
+    justify-content: space-between;
+    /* padding: 10px 20px; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    /* box-shadow: 0px 2px 5px var(--sidebar-shadow-color); */
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px var(--secondary-color);
+    transition: transform 0.3s ease-in-out;
+    filter: brightness(150%);
+    color: white;
+}
+
+.logo:hover {
+    transform: translateY(-10px) rotate(360deg);
+}
+
+
+.el-menu .el-menu-item.header_item {
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
+    color: black /* 设置默认字体颜色 */
+}
+
+.el-menu .el-menu-item.header_item:hover {
+    background-color: var(--primary-light-color);
+    border-bottom-color: var(--secondary-color);
+    color: white;
+}
+
+.sidebar {
+    background-color: var(--primary-color);
+    width: 220px;
+    padding: 12px 20px;
+    box-shadow: 2px 2px 4px var(--sidebar-shadow-color);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+
+.sidebar_item {
+    border-bottom: 1px solid var(--primary-dark-color);
+    font-weight: bold;
+    font-size: 20px;
+    padding: 16px 20px;
+    -o-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    /*增加color的过渡效果*/position: relative;
+    overflow: hidden;
+    display: flex;
+    /*增大其占据面积*/align-items: center;
+    height: var(--primary-dark-color);
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    color: black /* 设置默认字体颜色 */;
+    -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    -ms-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.sidebar:hover {
+    transform: translateX(20px);
+}
+
+
+.sidebar_item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.sidebar_item:hover::before {
+    opacity: 1;
+}
+
+.sidebar_item:hover {
+    background-color: var(--primary-light-color);
+    color: white; /* 修改字体颜色为白色 */
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {                                                       
+    display: flex;
+    flex: 1;
+    margin-top: 70px;
+}
+.sidebar_item:hover, .el-menu .el-menu-item.header_item:hover{
+    -o-transform: scale(1.15);
+    /*将字体放大10%//添加过渡效果*/
+    -o-transition: transform 0.7s ease-in-out;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition: transform 0.7s ease-in-out;
+    -moz-transition: transform 0.7s ease-in-out;
+    -ms-transition: transform 0.7s ease-in-out;
+    transition: transform 0.7s ease-in-out;
+}
+
+
+

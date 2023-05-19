@@ -1,4 +1,4 @@
-<template>
+q<template>
   <div class="app">
 
     <!-- 顶部导航栏 -->

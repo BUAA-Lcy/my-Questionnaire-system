@@ -18,6 +18,19 @@
     border-bottom-color: var(--secondary-color);
 }
 
+.sidebar {
+    background-color: var(--primary-color);
+    width: 220px;
+    padding: 12px 20px;
+    box-shadow: 2px 2px 4px var(--sidebar-shadow-color);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    transform: translateX(20px);
+}
+
 .sidebar_item {
     border-bottom: 1px solid var(--primary-dark-color);
     font-weight: bold;
@@ -101,16 +114,5 @@
     margin-top: 70px;
 }
 
-.sidebar {
-    background-color: var(--primary-color);
-    width: 220px;
-    padding: 12px 20px;
-    box-shadow: 2px 2px 4px var(--sidebar-shadow-color);
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-}
 
-.sidebar:hover {
-    transform: translateX(20px);
-}
 
