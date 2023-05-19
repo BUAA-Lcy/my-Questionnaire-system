@@ -1,5 +1,6 @@
 <template>
-  <frame></frame>
+  <thinking></thinking>
+  <!-- <frame></frame> -->
   <!-- <overview></overview> -->
   <!-- <questionlist></questionlist> -->
   <!-- <questionchart></questionchart> -->
@@ -10,4 +11,5 @@
   import questionlist from './components/questionlist.vue';
   import questionchart from './components/questionchart.vue';
   import frame from './components/frame.vue';
+  import thinking from './components/thinking.vue';
 </script>

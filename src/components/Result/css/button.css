@@ -3,7 +3,7 @@
     background-color: #7898BF;
     border: none;
     color: white;
-    width: 33%;
+    width: 10%;
     font-size: 16px;
     border-radius: 5px;
     font-weight: bold;
@@ -17,3 +17,7 @@
     font-size: 18px;
     font-weight: bold;
   }
+  .button-container {
+    display: flex;
+    justify-content: center;
+ }

@@ -1,12 +1,246 @@
 <template>
-  <div class="center">
-    <h1>statistic</h1>
-    <p>this is statistic page</p>
   
+
+  <!-- 顶部导航栏 -->
+  <el-header class="header">
+    <div class="logo">Soul</div>
+    
+      <el-menu mode="horizontal" router>
+        <el-menu-item class="header_item" index="/home">首页</el-menu-item>
+        <el-menu-item class="header_item" index="/about">关于我们</el-menu-item>
+        <el-menu-item class="header_item" index="/contact">联系我们</el-menu-item>
+        <el-menu-item class="header_item" index="/login">登录注册</el-menu-item>
+        
+      </el-menu>
+    
+  </el-header>
+
+  <div class="content-wrapper">
+    <!-- 侧边栏 -->
+    <el-aside class="sidebar">
+      <el-menu class="el-menu-vertical-demo" >
+        <el-menu-item class="sidebar_item" index="/dashboard">问卷总体信息</el-menu-item>
+        <el-menu-item class="sidebar_item" index="/statistic">分析</el-menu-item>              
+        <el-menu-item class="sidebar_item" index="/statistic">发送问卷</el-menu-item>
+        <el-menu-item class="sidebar_item" index="/statistic">下载</el-menu-item>
+        
+      </el-menu>
+    </el-aside>
+
+    <!-- 内容栏 -->
+    <el-main class="main">
+      <div class="questionnaire-title">{{ questionnaireTitle }}</div>
+
+      <div class="overview">
+            <div class="overview-header">
+              <h2 class="overview-title">问卷总体情况</h2>
+            </div>
+            <el-table :data="sumtableData" class="overview-table" stripe border>
+              <el-table-column label="回收量" prop="recovery">
+                <template #default="{ row }">
+                  <span class="overview-number">{{ row.recovery }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="浏览量" prop="views">
+                <template #default="{ row }">
+                  <span class="overview-number">{{ row.views }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="回收率" prop="recoveryRate">
+                <template #default="{ row }">
+                  <span class="overview-number">{{ row.recoveryRate }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="平均完成时间" prop="avgCompletionTime">
+                <template #default="{ row }">
+                  <span class="overview-number">{{ row.avgCompletionTime }}</span>
+                </template>
+              </el-table-column>
+            </el-table>
+      </div>
+
+      <el-form ref="form" :model="form" label-width="120px" class="questionlist">
+              <!-- 遍历问卷中的问题 -->
+              <div v-for="question in state.questions" :key="question.id" class="question-item">
+              <h2>{{ question.title }}</h2>
+            
+                  <div :id="'chart'+ question.id "  style="width: 600px;height:400px;"></div>
+                  <div class="button-container">
+                    <el-button class="rendering_button" v-for="chartType in chartTypes" :key="chartType" @click="changeChartType(question.id, chartType, question)">
+                      {{ chartType }}
+                   </el-button>
+                  </div>
+                  
+              </div>
+        </el-form>
+
+
+
+      
+     
+    </el-main>
+
+
+    
   </div>
 
 </template>
 
+  
+<script setup>
+  import * as echarts from 'echarts';
+  import { ElTable, ElTableColumn,ElButton } from 'element-plus';
+  import {onMounted, ref ,reactive, computed } from "vue";
+  import { useStore } from 'vuex'; 
+const form = ref({});
+const sumtableData = reactive([
+  {
+    recovery: 100,
+    views: 500,
+    recoveryRate: '20%',
+    avgCompletionTime: '5分钟'
+  }
+]);
+const questionnaireTitle = ref('问卷标题');
+const activeIndex = ref('/');
+const state = reactive({
+    questions: [ 
+    {
+    id: 1,
+    title: '问题1',
+    chartType: 'bar',
+    stem: '这是问题1的题干',
+    description: '这是问题1的描述',
+    categories: ['选项1', '选项2', '选项3'],
+    seriesData: [10, 30, 30],
+  },
+  {
+    id: 2,
+    title: '问题2',
+    chartType: 'bar',
+    stem: '这是问题2的题干',
+    description: '这是问题1的描述',
+    categories: ['选项1', '选项2', '选项3'],
+    seriesData: [100, 30, 30],
+  },
+  {
+    id: 3,
+    title: '问题3',
+    chartType: 'bar',
+    stem: '这是问题3的题干',
+    description: '这是问题1的描述',
+    categories: ['选项1', '选项2', '选项3'],
+    seriesData: [70, 80, 30],
+  },
+   ],
+  });
+  
+  const chartRefs = ref([]);
+  const chartTypes = ['bar', 'line', 'pie','test'];
+
+  onMounted(() => {
+    state.questions.forEach((question) => {
+        chartRefs[question.id] = echarts.init(document.getElementById('chart'+question.id));        
+        });
+    state.questions.forEach((question) => {
+        renderChart(question.id, chartTypes[0], question);
+      });
+      
+    });
+  
+  const renderChart = (questionId, chartType, question) => {
+
+    let option;
+    if (chartType === 'bar') {
+      option = {
+        xAxis: {
+          type: 'category',
+          data: question.categories,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [{
+          type: 'bar',
+          data: question.seriesData,
+        }],
+      };
+    } else if (chartType === 'line') {
+      option = {
+        xAxis: {
+          type: 'category',
+          data: question.continued_categories,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [{
+          type: 'line',
+          data: question.seriesData,
+        }],
+      };
+    }else if (chartType === 'pie') {
+        var template = [];
+        for(let i=0;i<question.categories.length;i++){
+            template.push({value:question.seriesData[i],name:question.categories[i]})
+        }
+      option = {
+        title: {
+            left: 'center',
+            top: 'center'
+        },
+        series: [
+        {
+          type: 'pie',
+          data: template,
+          radius: ['40%','70%']
+        },
+          ],
+
+        
+        };
+    }else if (chartType === 'test') {
+        option = {
+        title: {
+            text: question.title,
+            left: 'center',
+            top: 'center'
+        },
+        series: [
+            {
+            type: 'pie',
+            data: [
+                {
+                value: 335,
+                name: 'A'
+                },
+                {
+                value: 234,
+                name: 'B'
+                },
+                {
+                value: 1548,
+                name: 'C'
+                }
+            ],
+            radius: ['40%', '70%']
+            }
+        ]
+};
+    }
+    chartRefs[questionId].clear();
+    chartRefs[questionId].setOption(option);
+  };
+  
+  const changeChartType = (questionId, chartType, question) => {
+    renderChart(questionId, chartType,question);
+  };
 
 
-<style src="./css/center.css"></style>
+  </script>
+
+<style src="./css/frame.css"></style>
+<style src="./css/overview.css"></style>
+<style src="./css/question.css"></style>
+<style src="./css/button.css"></style>
+
