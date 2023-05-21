@@ -1,8 +1,7 @@
 .header_item {
-    border-bottom: 10px solid #e6e6e6;
+    border-bottom: 10px solid z#e6e6e6;
     font-weight: bold;
     transition: transform 0.3s ease-in-out; /* 添加过渡效果 */
-
    
   }
   
@@ -41,10 +40,7 @@
     font-weight: bold;
     justify-self: start;
   }
-  .menu {
-    display: flex;
-    justify-content: flex-end;
-  }
+  
   .content-wrapper {
     display: flex;
     flex: 1;
@@ -52,11 +48,11 @@
   .sidebar {
     background-color: #f0f0f0;
     width: 200px;
-   
-    padding: 12px 20px;
+    padding: 0px 20px;
   }
   .main {
-    padding: 20px;
+    
+    background-color: #fff;
     flex: 1;
   }
   .center{
@@ -68,3 +64,4 @@
   .fixed{
     position: fixed;
   }
+ 

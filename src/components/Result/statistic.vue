@@ -63,7 +63,7 @@
               <!-- 遍历问卷中的问题 -->
               <div v-for="question in state.questions" :key="question.id" class="question-item">
               <h2>{{ question.title }}</h2>
-            
+              <p class="question-description">{{ question.description }}</p>
                   <div :id="'chart'+ question.id "  style="width: 600px;height:400px;"></div>
                   <div class="button-container">
                     <el-button class="rendering_button" v-for="chartType in chartTypes" :key="chartType" @click="changeChartType(question.id, chartType, question)">
@@ -73,15 +73,7 @@
                   
               </div>
         </el-form>
-
-
-
-      
-     
     </el-main>
-
-
-    
   </div>
 
 </template>
@@ -193,13 +185,16 @@ const state = reactive({
         {
           type: 'pie',
           data: template,
-          radius: ['40%','70%']
         },
           ],
 
         
         };
     }else if (chartType === 'test') {
+      var template = [];
+        for(let i=0;i<question.categories.length;i++){
+            template.push({value:question.seriesData[i],name:question.categories[i]})
+        }
         option = {
         title: {
             text: question.title,
@@ -209,20 +204,7 @@ const state = reactive({
         series: [
             {
             type: 'pie',
-            data: [
-                {
-                value: 335,
-                name: 'A'
-                },
-                {
-                value: 234,
-                name: 'B'
-                },
-                {
-                value: 1548,
-                name: 'C'
-                }
-            ],
+            data: template,
             radius: ['40%', '70%']
             }
         ]

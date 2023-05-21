@@ -6,6 +6,9 @@
     --secondary-color: #889aa8;
     --sidebar-shadow-color: rgba(69, 66, 66, 0.3);
 }
+.body {
+    background-color: #C0C0C0;
+}
 .header {
     background: linear-gradient(to right, var(--primary-color), var(--primary-light-color));
     color: var(--secondary-color);
@@ -17,7 +20,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     /* box-shadow: 0px 2px 5px var(--sidebar-shadow-color); */
 }
 
@@ -49,25 +52,28 @@
 }
 
 .sidebar {
-    position: relative;
+    position: fixed;
     background-color: var(--primary-color);
+    height: 100%;
     width: 220px;
-    padding: 12px 20px;
+    padding: 50px 20px;
     box-shadow: 2px 2px 4px var(--sidebar-shadow-color);
     transition: transform 0.3s ease-in-out;
-    overflow: hidden;
+    overflow-y: auto;
+    z-index: 2;
+
 }
 
 
 .sidebar_item {
-   
+    
     border-bottom: 1px solid var(--primary-dark-color);
     font-weight: bold;
     font-size: 20px;
-    padding: 16px 20px;
+    padding: 20px 20px;
     -o-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     /*增加color的过渡效果*/
-    position: relative;
+
     overflow: hidden;
     display: flex;
     /*增大其占据面积*/align-items: center;
@@ -117,7 +123,7 @@
 .content-wrapper {                                                       
     display: flex;
     flex: 1;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 .sidebar_item:hover, .el-menu .el-menu-item.header_item:hover{
     -o-transform: scale(1.15);
@@ -132,6 +138,9 @@
     -ms-transition: transform 0.7s ease-in-out;
     transition: transform 0.7s ease-in-out;
 }
+.main {
+    margin-left: 200px; /* 侧边栏宽度 */
+  }
 
 
 
