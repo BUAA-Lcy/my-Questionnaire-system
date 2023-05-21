@@ -66,9 +66,18 @@
               <p class="question-description">{{ question.description }}</p>
                   <div :id="'chart'+ question.id "  style="width: 600px;height:400px;"></div>
                   <div class="button-container">
-                    <el-button class="rendering_button" v-for="chartType in chartTypes" :key="chartType" @click="changeChartType(question.id, chartType, question)">
-                      {{ chartType }}
-                   </el-button>
+                    <div v-if="question.questionType === 'choice'">
+                      <el-button class="rendering_button" v-for="chartType in chartTypes_for_chart" :key="chartType" @click="changeChartType(question.id, chartType, question)">
+                          {{ chartType }}
+                      </el-button>
+                    </div>
+                    <div v-if="question.questionType === 'text'">
+                      <el-button class="rendering_button" v-for="chartType in chartTypes_for_chart" :key="chartType" @click="changeChartType(question.id, chartType, question)">
+                          {{ chartType }}
+                      </el-button>
+                    </div>
+                    
+                 
                   </div>
                   
               </div>
@@ -95,11 +104,14 @@ const sumtableData = reactive([
 ]);
 const questionnaireTitle = ref('问卷标题');
 const activeIndex = ref('/');
+const chartTypes_for_chart = ['bar', 'line', 'pie','test'];
+
 const state = reactive({
     questions: [ 
     {
     id: 1,
     title: '问题1',
+    questionType: 'choice',
     chartType: 'bar',
     stem: '这是问题1的题干',
     description: '这是问题1的描述',
@@ -109,7 +121,8 @@ const state = reactive({
   {
     id: 2,
     title: '问题2',
-    chartType: 'bar',
+    questionType: 'choice',
+    chartType: 'line',
     stem: '这是问题2的题干',
     description: '这是问题1的描述',
     categories: ['选项1', '选项2', '选项3'],
@@ -118,7 +131,8 @@ const state = reactive({
   {
     id: 3,
     title: '问题3',
-    chartType: 'bar',
+    questionType: 'choice',
+    chartType: 'pie',
     stem: '这是问题3的题干',
     description: '这是问题1的描述',
     categories: ['选项1', '选项2', '选项3'],
@@ -128,14 +142,14 @@ const state = reactive({
   });
   
   const chartRefs = ref([]);
-  const chartTypes = ['bar', 'line', 'pie','test'];
+
 
   onMounted(() => {
     state.questions.forEach((question) => {
         chartRefs[question.id] = echarts.init(document.getElementById('chart'+question.id));        
         });
     state.questions.forEach((question) => {
-        renderChart(question.id, chartTypes[0], question);
+        renderChart(question.id, question.chartType, question);
       });
       
     });
