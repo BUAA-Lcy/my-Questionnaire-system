@@ -3,32 +3,40 @@
   justify-content: center;
   text-align: center;
 }
-  .questionnaire-title {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 40px;
-    font-weight: bold;
-    margin : 20px;
-   
-  }
-  .questionlist {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 80%;
-  }
-  .question-item {
-    margin-bottom: 20px;
-  }
+.question-title {
+  font-weight: bold;
+  margin-bottom: 40px;
+  width: 400px;
+  text-align: left;
+  display: block; /* 将问题标题转换为块级元素 */
+}
+.questionnaire-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  margin : 20px;
+ 
+}
+.question-description {
+  margin: 20px;
+  margin-left: 50px ;
+  display: block; /* 将问题描述转换为块级元素 */
+  margin-top: 10px; /* 设置问题描述与问题标题之间的间距 */
+  font-size: 16px; /* 设置问题描述的字体大小 */
+  color: #666; /* 设置问题描述的字体颜色 */
+}
+ 
   .question-title {
+    margin: 50px;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 10px; /* 调整标题和描述之间的间距 */
     width: 400px;
     text-align: left;
+    display: block;
   }
   /* 自定义样式 */
   .el-radio-group, .el-checkbox-group {
@@ -41,4 +49,17 @@
   .el-input {
     width: 100%; /* 让填空题的输入框宽度为100% */
     font-size: 16px; /* 修改字体大小 */
+  }
+  .question-chart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* 设置问题描述和图表之间的间距 */
+    width: 100%; /* 让图表容器宽度为100% */
+  }
+  
+  .question-chart {
+    width: 600px;
+    height: 400px;
   }

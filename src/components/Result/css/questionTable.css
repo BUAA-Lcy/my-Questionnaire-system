@@ -1,0 +1,24 @@
+.table-container table {
+    border-collapse: collapse; /* 合并边框 */
+    border: 1px solid #ccc; /* 边框宽度和颜色 */;
+    margin-left: 30%;
+  }
+  
+.table-container td {
+    border: 1px solid #ccc; /* 单元格边框宽度和颜色 */
+    padding: 8px; /* 单元格内边距 */
+    
+
+  }
+.table-container th{
+  border: 1px solid #ccc; /* 单元格边框宽度和颜色 */
+    padding: 8px; /* 单元格内边距 */
+   
+}
+
+.table-container table td:nth-child(2) {
+  min-width: 400px;
+}
+
+
+
